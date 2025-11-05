@@ -1,8 +1,8 @@
-function popupEdit () {
+export default function popupEdit({closePopup}: any) {
   return <div className="g-popup__overlay edit">
     <div className="g-popup__ctn">
 
-      <button className="g-popup__fechar">Fechar</button>
+      <button className="g-popup__fechar" onClick={closePopup}>Fechar</button>
 
       <h1>/Usuário</h1>
       <p><b>Nome:</b>Mateus Durães dos Santos</p>
@@ -23,5 +23,3 @@ function popupEdit () {
     </div>
   </div>
 }
-
-export default popupEdit

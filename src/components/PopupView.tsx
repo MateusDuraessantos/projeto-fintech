@@ -1,10 +1,24 @@
 import './PopupView.css'
 
-function popupView () {
+const inputsUsers = [
+  'nome',
+  'sobrenome',
+  'cpf',
+  'dtNascimento',
+]
+
+const inputsAccouts = [
+  'email',
+  'senha',
+  'bandeira',
+  'numeroAgencia',
+]
+
+export default function popupView ({closePopup}: any) {
   return <div className="g-popup__overlay view">
     <div className="g-popup__ctn">
       
-      <button className="g-popup__fechar">Fechar</button>
+      <button className="g-popup__fechar" onClick={closePopup}>Fechar</button>
 
       <h1>/Editar usuário: Mateus Durães Santos</h1>
 
@@ -48,19 +62,3 @@ function popupView () {
     </div>
   </div>
 }
-
-const inputsUsers = [
-  'nome',
-  'sobrenome',
-  'cpf',
-  'dtNascimento',
-]
-
-const inputsAccouts = [
-  'email',
-  'senha',
-  'bandeira',
-  'numeroAgencia',
-]
-
-export default popupView

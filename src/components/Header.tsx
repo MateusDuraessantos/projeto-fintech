@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom'
+
 import "./Header.css"
-function Header() {
+export default function Header() {
   return <header className="header">
     <div className="header__logo">FINTECH</div>
-    <button>Perfil</button>
+    <Link to={'/'}>Sair</Link>
   </header>
 }
-
-export default Header

@@ -1,11 +1,62 @@
 import './UsersPage.css'
 import PopupEdit from '../components/PopupEdit'
 import PopupView from '../components/PopupView'
+import { useState } from "react";
 
-function UsersPage () {
+
+interface tableUsers {
+  name: string,
+  surname: string,
+  email: string,
+  cpf: string,
+  dataCreation: string,
+}
+
+
+export default function UsersPage () {
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openView, setOpenView] = useState(false);
+
+  const data: tableUsers[] = [
+    {
+      name: 'Mateus', 
+      surname: 'Durães dos Santos', 
+      email: 'mateus@gmail.com', 
+      cpf: '000.000.000-00', 
+      dataCreation: '01/11/2025', 
+    },
+    {
+      name: 'Pedro', 
+      surname: 'Santos', 
+      email: 'pedro@gmail.com', 
+      cpf: '111.111.111-00', 
+      dataCreation: '01/11/2025', 
+    },
+    {
+      name: 'Mateus', 
+      surname: 'Durães dos Santos', 
+      email: 'mateus@gmail.com', 
+      cpf: '000.000.000-00', 
+      dataCreation: '01/11/2025', 
+    },
+    {
+      name: 'Pedro', 
+      surname: 'Santos', 
+      email: 'pedro@gmail.com', 
+      cpf: '111.111.111-00', 
+      dataCreation: '01/11/2025', 
+    },
+  ]
+
+  const handlePopupEdit = () => setOpenEdit(!openEdit)
+  const handlePopupView = () => setOpenView(!openView)
+
+  const deleteUser = () => {
+    console.log('delete');
+  }
+
   return <div className='users'>
-    
-
     <table className="table table-striped table-dark">
       <thead>
         <tr>
@@ -28,64 +79,20 @@ function UsersPage () {
               <td>{obj.cpf}</td>
               <td>{obj.dataCreation}</td>
               <td className='table__buttons'>
-                <button className='btn btn-link'>Analisar</button>
-                <button className='btn btn-link'>Editar</button>
-                <button className='btn btn-link'>Excluir</button>
+                <button className='btn btn-link' onClick={handlePopupView}>Analisar</button>
+                <button className='btn btn-link' onClick={handlePopupEdit}>Editar</button>
+                <button className='btn btn-link' onClick={deleteUser}>Excluir</button>
               </td>
             </tr>
             ))
           }
         
-          
-        
       </tbody>
     </table>
 
-
-    {/* <PopupEdit /> */}
-    {/* <PopupView /> */}
+    {openEdit && <PopupEdit closePopup={handlePopupEdit} />}
+    {openView && <PopupView closePopup={handlePopupView}/>}
 
   </div>
+
 }
-
-interface tableUsers {
-  name: string,
-  surname: string,
-  email: string,
-  cpf: string,
-  dataCreation: string,
-}
-
-const data: tableUsers[] = [
-  {
-    name: 'Mateus', 
-    surname: 'Durães dos Santos', 
-    email: 'mateus@gmail.com', 
-    cpf: '000.000.000-00', 
-    dataCreation: '01/11/2025', 
-  },
-  {
-    name: 'Pedro', 
-    surname: 'Santos', 
-    email: 'pedro@gmail.com', 
-    cpf: '111.111.111-00', 
-    dataCreation: '01/11/2025', 
-  },
-  {
-    name: 'Mateus', 
-    surname: 'Durães dos Santos', 
-    email: 'mateus@gmail.com', 
-    cpf: '000.000.000-00', 
-    dataCreation: '01/11/2025', 
-  },
-  {
-    name: 'Pedro', 
-    surname: 'Santos', 
-    email: 'pedro@gmail.com', 
-    cpf: '111.111.111-00', 
-    dataCreation: '01/11/2025', 
-  },
-]
-
-
-export default UsersPage
