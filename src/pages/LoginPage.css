@@ -1,0 +1,17 @@
+.forms__container * {
+  color: white;
+}
+.forms__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 240px);
+}
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  height: max-content;
+}

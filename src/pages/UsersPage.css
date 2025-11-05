@@ -1,0 +1,7 @@
+.users {
+  width: 100%;
+}
+.table__buttons {
+  display: flex;
+  gap: 6px;
+}
