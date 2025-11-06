@@ -129,6 +129,6 @@ npm run preview
 
 ## 👤 Autor
 
-**Mateus Durães dos Snatos**  
+**Mateus Durães dos Santos**  
 💻 Designer & Front-End Developer  
 📧 [GitHub Portfolio](https://github.com/mateusduraes)
