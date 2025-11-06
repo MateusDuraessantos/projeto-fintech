@@ -1,73 +1,134 @@
-# React + TypeScript + Vite
+# 🏦 Fintech - Painel de Gerenciamento de Usuários
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação front-end desenvolvida em **React + TypeScript**, com roteamento via **React Router**, focada na gestão de usuários de uma plataforma **FINTECH**.  
+O sistema permite **login**, **visualização**, **criação**, **edição** e **exclusão** de usuários, com uma interface moderna, responsiva e popups reutilizáveis.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## React Compiler
+- **React 18+**
+- **TypeScript**
+- **Vite**
+- **React Router DOM**
+- **CSS Modules / Global Styles**
+- **Fetch API (para integração com o backend)**
+- **JAVA**
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🧱 Estrutura de Pastas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx
+├── main.tsx
+├── api/
+│   └── users/
+│       └── users.ts          # Métodos GET, POST, PUT, DELETE para usuários
+├── components/
+│   ├── Header.tsx
+│   ├── PopupView.tsx
+│   ├── PopupEdit.tsx
+│   ├── CriarUsuario.tsx
+│   └── ...
+├── pages/
+│   ├── Login.tsx
+│   ├── Users.tsx
+├── styles/
+│   ├── global.css
+│   ├── Header.css
+│   ├── Page_Users.css
+│   ├── PopupEdit.css
+│   └── ...
+└── types/
+    └── users.ts              # Tipagem dos objetos de usuário
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💡 Principais Funcionalidades
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 👥 Gerenciar Usuários (`/users`)
+- Lista de todos os usuários cadastrados (GET)
+- Botões para:
+  - **Analisar** → abre `PopupView`
+  - **Editar** → abre `PopupEdit`
+  - **Excluir** → executa `DELETE_user`
+  - **Criar Usuário** → abre `CriarUsuario`
+
+---
+
+## 🧩 Componentes
+
+### `Header.tsx`
+Barra fixa superior com o nome da fintech e botão “Sair”.
+
+### `PopupView.tsx`
+Exibe os dados completos de um usuário selecionado (GET by CPF).
+
+### `PopupEdit.tsx`
+Formulário de atualização dos dados do usuário (PUT).
+
+### `CriarUsuario.tsx`
+Formulário para criar novos usuários (POST).
+
+---
+
+## 🎨 Estilos
+
+- `global.css` define variáveis globais, resets e temas em tons de azul escuro.
+
+---
+
+## 🔗 Integração com Backend
+
+As requisições são centralizadas em `api/users/users.ts`, contendo métodos assíncronos:
+```ts
+GET_all()
+GET_byCpf(user)
+POST_user(user)
+PUT_user(user)
+DELETE_user(user)
 ```
+
+O backend deve responder com endpoints REST no padrão:
+```
+GET    /api/user
+GET    /api/user/{cpf}
+POST   /api/user
+PUT    /api/user
+DELETE /api/user/{cpf}
+```
+
+---
+
+## ⚙️ Execução do Projeto
+
+### 🔧 Instalar dependências
+```bash
+npm install
+```
+
+### ▶️ Executar em modo desenvolvimento
+```bash
+npm run dev
+```
+
+### 🏗️ Build de produção
+```bash
+npm run build
+```
+
+### 🌐 Visualizar build localmente
+```bash
+npm run preview
+```
+
+---
+
+## 👤 Autor
+
+**Mateus Durães dos Snatos**  
+💻 Designer & Front-End Developer  
+📧 [GitHub Portfolio](https://github.com/mateusduraes)
