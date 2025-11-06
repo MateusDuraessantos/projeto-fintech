@@ -15,6 +15,10 @@
 .g-popup__ctn {
   min-width: 600px;
 }
+.g-popup__ctn p {
+  display: flex;
+  gap: 4px;
+}
 h1, p, b {
   color: black;
 }

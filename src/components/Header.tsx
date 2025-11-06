@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
+import "../styles/Header.css"
 
-import "./Header.css"
 export default function Header() {
   return <header className="header">
     <div className="header__logo">FINTECH</div>

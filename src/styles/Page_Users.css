@@ -1,0 +1,22 @@
+.users {
+  width: 100%;
+}
+.table__buttons {
+  display: flex;
+  gap: 6px;
+}
+.user__header {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+.user__header span {
+  color: var(--blue__00);
+}
+.user__header h1 {
+  font-size: 24px;
+  color: white;
+}

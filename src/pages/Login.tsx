@@ -1,4 +1,4 @@
-import './LoginPage.css'
+import '../styles/Page_Login.css'
 import { Link } from 'react-router-dom'
 
 function Login() {

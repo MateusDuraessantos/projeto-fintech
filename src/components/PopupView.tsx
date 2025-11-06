@@ -1,64 +1,40 @@
-import './PopupView.css'
+import '../styles/PopupView.css'
+import React, { useEffect, useState } from "react";
+import { callable_users } from '../api/users/users'
+import type { Users } from '~/types/users'
 
-const inputsUsers = [
-  'nome',
-  'sobrenome',
-  'cpf',
-  'dtNascimento',
-]
+const buscarPorCpf = async (user: Users) => await callable_users.GET_byCpf(user)
 
-const inputsAccouts = [
-  'email',
-  'senha',
-  'bandeira',
-  'numeroAgencia',
-]
+export default function PopupView ({ user, closePopup }: any) {
+  // ====== VARIABLES =======
+  const [datas, setDatas] = useState<Users>()
+  
+  // ====== METHODS =======
+  useEffect(() => {
+    if (!user) return;
 
-export default function popupView ({closePopup}: any) {
-  return <div className="g-popup__overlay view">
+    const load = async () => {
+      const response = await buscarPorCpf(user)
+      setDatas(response)
+    }
+
+    load()
+    
+  }, [user])
+
+  // ====== HTML =======
+
+  return <div className="g-popup__overlay">
     <div className="g-popup__ctn">
-      
-      <button className="g-popup__fechar" onClick={closePopup}>Fechar</button>
 
-      <h1>/Editar usuário: Mateus Durães Santos</h1>
+      <button className="g-popup__fechar" onClick={() => closePopup()}>Fechar</button>
 
-      <div>
-        <hr />
-        <div className='view__grid'>
-        
-          <div className='view__user'>
-            {
-              inputsUsers.map((obj: any) => (
-                <div className='g-input__ctn'>
-                  <b>{obj}</b>
-                  <input className='g-input' type='text' placeholder={obj} />
-                </div>
-              ))
-            }
-          </div>
-        
-          <div className="vr mx-3"></div>
-          <div className='view__user'>
-            {
-              inputsAccouts.map((obj: any) => (
-                <div className='g-input__ctn'>
-                  <b>{obj}</b>
-                  <input className='g-input' type='text' placeholder={obj} />
-                </div>
-              ))
-            }
-          </div>
-        </div>
-        
-      </div>
+      <h1>/Dados do usuário</h1>
+      <p><b>Nome Completo:</b>{datas?.nome} {datas?.sobrenome}</p>
+      <p><b>CPF:</b> { datas?.cpf }</p>
+      <p><b>RG:</b> { datas?.rg }</p>
+      <p><b>Data de nascimento:</b> { datas?.nascimento }</p>
       
-      <hr />
-      
-      <div className='g-popup__actions'>
-        <button className='btn btn-outline-primary'>Cancelar</button>
-        <button className='btn btn-primary'>Salvar</button>
-      </div>
-
     </div>
   </div>
 }
