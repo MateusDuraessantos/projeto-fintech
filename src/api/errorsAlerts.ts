@@ -1,4 +1,4 @@
-type alertas = 'alert' | 'warning' | 'danger' | 'success'
+type alertas = 'warning' | 'danger' | 'success'
 
 export const showAlert = (message: string, type: alertas) => {
   const alert = document.createElement('div')

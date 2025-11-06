@@ -19,7 +19,7 @@ export const callable_users = {
   },
 
   GET_byCpf: async (user: Users): Promise<Users> => {
-    const messageError = `erro ao buscar usuário ${user.nome} ${user.sobrenome}`
+    const messageError = `erro ao buscar usuário "${user.nome} ${user.sobrenome}"`
     try {
       const res = await fetch(`${baseUrl}/${user.cpf}`)
 
@@ -34,7 +34,7 @@ export const callable_users = {
   },
 
   POST_user: async (user: Users): Promise<Users> => {
-    const messageError = `Erro ao criar usuário ${user.nome} ${user.sobrenome}`
+    const messageError = `Erro ao criar usuário "${user.nome} ${user.sobrenome}".`
 
     try {
       const res = await fetch(baseUrl, {
@@ -45,18 +45,18 @@ export const callable_users = {
 
       if (!res.ok) throw new Error(messageError)
       const data: Users = await res.json()
-      showAlert(`Usuário criado com sucesso!`, 'success')
+      showAlert(`Usuário "${user.nome} ${user.sobrenome}" criado com sucesso!`, 'success')
 
       return data
 
     } catch (error) {
-      showAlert(messageError, 'alert')
+      showAlert(messageError, 'danger')
       throw new Error(messageError)
     }
   },
 
   PUT_user: async (user: Users) => {
-    const messageError = `Erro ao atualizar usuário ${user.nome} ${user.sobrenome}`
+    const messageError = `Erro ao atualizar usuário "${user.nome} ${user.sobrenome}"`
 
     try {
       const res = await fetch(`${baseUrl}`, {
@@ -67,12 +67,12 @@ export const callable_users = {
 
       if (!res.ok) throw new Error(messageError)
 
-      showAlert(`Usuário ${user.nome} ${user.sobrenome} atualizado com sucesso!`, 'success')
+      showAlert(`Usuário "${user.nome} ${user.sobrenome}" atualizado com sucesso!`, 'success')
 
       return true
 
     } catch (error) {
-      showAlert(messageError, 'alert')
+      showAlert(messageError, 'danger')
       throw new Error(messageError)
     }
   },
@@ -81,7 +81,7 @@ export const callable_users = {
     const messageError = `Erro ao excluir usuário`
 
     try {
-      if (!confirm(`Tem certeza de que deseja excluir o usuário \n ${user.nome} ${user.sobrenome}?`)) return
+      if (!confirm(`Tem certeza de que deseja excluir o usuário \n "${user.nome} ${user.sobrenome}"?`)) return
 
       const res = await fetch(`${baseUrl}/${user.cpf}`, { method: 'DELETE' })
 
@@ -93,7 +93,7 @@ export const callable_users = {
       return true
 
     } catch (error) {
-      showAlert(messageError, 'alert')
+      showAlert(messageError, 'danger')
       throw new Error(messageError)
     }
   },

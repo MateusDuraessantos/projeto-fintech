@@ -1,7 +1,7 @@
 import '../styles/PopupEdit.css'
 import React, { useEffect, useState } from "react";
 import { callable_users } from '../api/users/users'
-import { valores } from '~/constants/users'
+import { valores2 } from '~/constants/users'
 import type { Users } from '~/types/users'
 
 const buscarPorCpf = async (user: Users) => await callable_users.GET_byCpf(user)
@@ -49,7 +49,7 @@ export default function PopupEdit ({ user, closePopup, searchDatas }: any) {
     const datasToUpdate = {
       nome: data.nome || inputs.nome, 
       sobrenome: data.sobrenome || inputs.sobrenome, 
-      cpf: data.cpf || inputs.cpf, 
+      cpf: inputs.cpf, 
       nascimento: data.nascimento || inputs.nascimento, 
       rg: data.rg || inputs.rg
     }
@@ -72,7 +72,7 @@ export default function PopupEdit ({ user, closePopup, searchDatas }: any) {
       
       <button className="g-popup__fechar" onClick={closePopup}>Fechar</button>
 
-      <h1>/Editar usuário: Mateus Durães Santos</h1>
+      <h5><b>/Editar usuário:</b> {inputs.nome} {inputs.sobrenome}</h5>
     
       <div>
         <hr />
@@ -80,7 +80,7 @@ export default function PopupEdit ({ user, closePopup, searchDatas }: any) {
           <form onSubmit={atualizarUser} className='view__user'>
 
             {
-              valores.map((obj: any) => (
+              valores2.map((obj: any) => (
                 <div className='g-input__ctn' key={obj.name}>
                   <p><b>{obj.name}</b> - ({(inputs|| {})[obj.name]})</p>
                   <input
@@ -96,7 +96,6 @@ export default function PopupEdit ({ user, closePopup, searchDatas }: any) {
             <hr />
             
             <div className='g-popup__actions'>
-              <button className='btn btn-outline-primary'>Cancelar</button>
               <button className='btn btn-primary' type='submit'>Atualizar</button>
             </div>
 

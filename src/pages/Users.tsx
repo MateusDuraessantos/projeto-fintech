@@ -82,7 +82,7 @@ export default function Page_Users () {
 
     {open_Edit && <PopupEdit user={selectUser} searchDatas={searchDatas} closePopup={ handlePopup_Edit } />}
     {open_View && <PopupView user={selectUser} closePopup={ handlePopup_View } />}
-    {open_Criar && <CriarUsuario closePopup={ handlePopup_Criar } />}
+    {open_Criar && <CriarUsuario searchDatas={searchDatas} closePopup={ handlePopup_Criar } />}
 
   </div>
 

@@ -3,10 +3,10 @@ import { callable_users } from '~/api/users/users'
 import type { Users } from '~/types/users'
 import { valores } from '~/constants/users'
 
-export default function CriarUsuario ({ closePopup }: any) {
+export default function CriarUsuario ({ searchDatas, closePopup }: any) {
 
   // ===== METHODS =====
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
@@ -16,13 +16,18 @@ export default function CriarUsuario ({ closePopup }: any) {
       return
     }
 
-    callable_users.POST_user({
+    const response = await callable_users.POST_user({
       'nome': String(data.nome),
       'sobrenome': String(data.sobrenome),
       'cpf': String(data.cpf),
       'nascimento': String(data.nascimento),
       'rg': Number(data.rg),
     })
+
+    if (response) {
+      searchDatas()
+      closePopup()
+    }
 
   };
 
@@ -52,7 +57,6 @@ export default function CriarUsuario ({ closePopup }: any) {
         <br />
 
         <div className='g-popup__actions'>
-          <button className='btn btn-outline-primary'>Cancelar</button>
           <button className='btn btn-primary' type="submit">Salvar</button>
         </div>
       </form>

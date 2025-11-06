@@ -121,7 +121,10 @@ button:focus {
 }
 .g-popup__actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.g-popup__actions button {
+  color: white;
 }
 .g-popup__overlay .g-input {
   color: black;
